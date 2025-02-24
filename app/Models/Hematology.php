@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Hematology extends Model
 {
@@ -14,9 +15,14 @@ class Hematology extends Model
     //     'segmenters' => 'string',
     // ];
 
-    public function medicalTechnologist()
+    public function analyst(): BelongsTo
     {
-        return $this->belongsTo(MedicalTechnologist::class);
+        return $this->belongsTo(MedicalTechnologist::class, 'analyst_med_tech_id');
+    }
+
+    public function verifiedBy(): BelongsTo
+    {
+        return $this->belongsTo(MedicalTechnologist::class, 'verified_by_med_tech_id');
     }
 
     // private function formatDecimal($value)

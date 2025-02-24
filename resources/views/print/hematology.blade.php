@@ -18,7 +18,7 @@
 
     .container {
         padding: 10px;
-        width: 580px;
+        width: 620px;
         font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -289,12 +289,20 @@
             </tr>
         </table>
 
-        <div style="display: flex; justify-content: space-evenly; margin-top: 50px;">
-            <div style="font-size: 12px; text-align: center;">
+        <div style="display: flex; gap:20px; margin-top: 50px;">
+            <div style="font-size: 10px; text-align: center; position:relative;">
+                <p style="text-align:left; position:absolute; left:0; top:-35px;">Analyst:</p>
                 <p style="font-weight: bold; text-transform: uppercase; text-decoration: underline;">
-                    {{ $hematology->medicalTechnologist->name }}</p>
+                    {{ $hematology->analyst->name }}</p>
                 <p>Medical Technologist</p>
-                <p>License No. {{ $hematology->medicalTechnologist->license_number }}</p>
+                <p>License No. {{ $hematology->analyst->license_number }}</p>
+            </div>
+            <div style="font-size: 10px; text-align: center; position:relative;">
+                <p style="text-align:left; position:absolute; left:0; top:-35px;">Verified By:</p>
+                <p style="font-weight: bold; text-transform: uppercase; text-decoration: underline;">
+                    {{ $hematology->verifiedBy->name }}</p>
+                <p>Medical Technologist</p>
+                <p>License No. {{ $hematology->verifiedBy->license_number }}</p>
             </div>
             <div style="font-size: 12px; text-align: center;">
                 <img style="width: 250px; margin-top: -29px; transform: rotate(-1deg);"
