@@ -4,12 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BloodChemistry extends Model
 {
     use HasFactory;
- 
+
     protected $guarded = ['id'];
+
+    public function analyst(): BelongsTo
+    {
+        return $this->belongsTo(MedicalTechnologist::class, 'analyst_med_tech_id');
+    }
+
+    public function verifiedBy(): BelongsTo
+    {
+        return $this->belongsTo(MedicalTechnologist::class, 'verified_by_med_tech_id');
+    }
 
     // protected $casts = [
     //     'fbs' => 'decimal:2',
@@ -50,7 +61,7 @@ class BloodChemistry extends Model
     //     if ($value === null) {
     //         return ''; // Return an empty string if the value is NULL
     //     }
-    
+
     //     // Check if the value is an integer
     //     if ($value == (int)$value) {
     //         return (string)(int)$value; // Return as integer if it's a whole number
@@ -58,7 +69,7 @@ class BloodChemistry extends Model
     //         return rtrim(rtrim(number_format($value, 2, '.', ''), '0'), '.'); // Return formatted value without trailing zeros
     //     }
     // }
-    
+
     // public function getFbsAttribute($value)
     // {
     //     return $this->formatDecimal($value);

@@ -59,7 +59,8 @@ class BloodChemistryController extends Controller
             'sex' => 'required|string',
             'requesting_physician' => 'nullable|string',
             'ward' => 'nullable|string',
-            'medical_technologist_id' => 'required|exists:medical_technologists,id',
+            'analyst_med_tech_id' => 'required|exists:medical_technologists,id',
+            'verified_by_med_tech_id' => 'nullable|exists:medical_technologists,id',
             'fbs' => 'nullable|string',
             'sgot' => 'nullable|string',
             'sgpt' => 'nullable|string',
@@ -157,7 +158,8 @@ class BloodChemistryController extends Controller
             'ionized_calcium' => 'nullable|string',
             'nonionized_calcium' => 'nullable|string',
             'total_calcium' => 'nullable|string',
-            'medical_technologist_id' => 'required|exists:medical_technologists,id',
+            'analyst_med_tech_id' => 'required|exists:medical_technologists,id',
+            'verified_by_med_tech_id' => 'nullable|exists:medical_technologists,id',
         ]);
 
         $bloodChemistry->update($request->all());

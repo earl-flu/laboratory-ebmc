@@ -43,7 +43,8 @@ const form = useForm({
   ionized_calcium: props.bloodChemistry.ionized_calcium,
   nonionized_calcium: props.bloodChemistry.nonionized_calcium,
   total_calcium: props.bloodChemistry.total_calcium,
-  medical_technologist_id: props.bloodChemistry.medical_technologist_id,
+  analyst_med_tech_id: props.bloodChemistry.analyst_med_tech_id,
+  verified_by_med_tech_id: props.bloodChemistry.verified_by_med_tech_id,
 });
 
 const submit = () => {
@@ -84,18 +85,15 @@ const submit = () => {
           <div class="card-body p-4">
             <h5 class="mb-16">Edit Blood Chemistry Examination Result</h5>
             <form class="row g-3" @submit.prevent="submit">
-         
               <div class="row mb-3">
-                <label
-                  for="medical_technologist"
-                  class="col-sm-3 col-form-label"
-                  >Medical Technologist</label
+                <label for="analyst_med_tech_id" class="col-sm-3 col-form-label"
+                  >Analyst</label
                 >
                 <div class="col-sm-9">
                   <select
                     class="form-select"
-                    v-model="form.medical_technologist_id"
-                    id="medical_technologist"
+                    v-model="form.analyst_med_tech_id"
+                    id="analyst_med_tech_id"
                     required
                   >
                     <option value="">Select Medical Technologist</option>
@@ -108,7 +106,35 @@ const submit = () => {
                     </option>
                   </select>
                   <div class="invalid-feedback d-block">
-                    {{ form.errors.medical_technologist_id }}
+                    {{ form.errors.analyst_med_tech_id }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label
+                  for="verified_by_med_tech_id"
+                  class="col-sm-3 col-form-label"
+                  >Verified By</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    v-model="form.verified_by_med_tech_id"
+                    id="verified_by_med_tech_id"
+                    required
+                  >
+                    <option value="">Select Medical Technologist</option>
+                    <option
+                      v-for="technologist in medicalTechnologists"
+                      :key="technologist.id"
+                      :value="technologist.id"
+                    >
+                      {{ technologist.name }}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback d-block">
+                    {{ form.errors.verified_by_med_tech_id }}
                   </div>
                 </div>
               </div>
@@ -246,7 +272,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="sgot" class="col-sm-3 col-form-label">SGOT (AST)</label>
+                <label for="sgot" class="col-sm-3 col-form-label"
+                  >SGOT (AST)</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -260,7 +288,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="sgpt" class="col-sm-3 col-form-label">SGPT (ALT)</label>
+                <label for="sgpt" class="col-sm-3 col-form-label"
+                  >SGPT (ALT)</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -274,7 +304,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="creatinine" class="col-sm-3 col-form-label">Creatinine</label>
+                <label for="creatinine" class="col-sm-3 col-form-label"
+                  >Creatinine</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -288,7 +320,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="bun_urea" class="col-sm-3 col-form-label">BUN/Urea</label>
+                <label for="bun_urea" class="col-sm-3 col-form-label"
+                  >BUN/Urea</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -302,7 +336,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="uric_acid" class="col-sm-3 col-form-label">Uric Acid</label>
+                <label for="uric_acid" class="col-sm-3 col-form-label"
+                  >Uric Acid</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -316,7 +352,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="total_bilirubin" class="col-sm-3 col-form-label">Total Bilirubin</label>
+                <label for="total_bilirubin" class="col-sm-3 col-form-label"
+                  >Total Bilirubin</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -330,7 +368,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="direct_bilirubin" class="col-sm-3 col-form-label">Direct Bilirubin</label>
+                <label for="direct_bilirubin" class="col-sm-3 col-form-label"
+                  >Direct Bilirubin</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -344,7 +384,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="indirect_bilirubin" class="col-sm-3 col-form-label">Indirect Bilirubin</label>
+                <label for="indirect_bilirubin" class="col-sm-3 col-form-label"
+                  >Indirect Bilirubin</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -358,7 +400,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="total_protein" class="col-sm-3 col-form-label">Total Protein</label>
+                <label for="total_protein" class="col-sm-3 col-form-label"
+                  >Total Protein</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -372,7 +416,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="albumin" class="col-sm-3 col-form-label">Albumin</label>
+                <label for="albumin" class="col-sm-3 col-form-label"
+                  >Albumin</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -386,7 +432,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="globulin" class="col-sm-3 col-form-label">Globulin</label>
+                <label for="globulin" class="col-sm-3 col-form-label"
+                  >Globulin</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -400,7 +448,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="ag_ratio" class="col-sm-3 col-form-label">A/G Ratio</label>
+                <label for="ag_ratio" class="col-sm-3 col-form-label"
+                  >A/G Ratio</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -414,7 +464,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="cholesterol" class="col-sm-3 col-form-label">Cholesterol</label>
+                <label for="cholesterol" class="col-sm-3 col-form-label"
+                  >Cholesterol</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -428,7 +480,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="triglyceride" class="col-sm-3 col-form-label">Triglyceride</label>
+                <label for="triglyceride" class="col-sm-3 col-form-label"
+                  >Triglyceride</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -442,7 +496,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="hdl_cholesterol" class="col-sm-3 col-form-label">HDL Cholesterol</label>
+                <label for="hdl_cholesterol" class="col-sm-3 col-form-label"
+                  >HDL Cholesterol</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -456,7 +512,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="ldl_cholesterol" class="col-sm-3 col-form-label">LDL Cholesterol</label>
+                <label for="ldl_cholesterol" class="col-sm-3 col-form-label"
+                  >LDL Cholesterol</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -470,7 +528,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="vldl_cholesterol" class="col-sm-3 col-form-label">VLDL Cholesterol</label>
+                <label for="vldl_cholesterol" class="col-sm-3 col-form-label"
+                  >VLDL Cholesterol</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -498,7 +558,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="sodium" class="col-sm-3 col-form-label">Sodium (Na+)</label>
+                <label for="sodium" class="col-sm-3 col-form-label"
+                  >Sodium (Na+)</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -512,7 +574,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="potassium" class="col-sm-3 col-form-label">Potassium (K+)</label>
+                <label for="potassium" class="col-sm-3 col-form-label"
+                  >Potassium (K+)</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -526,7 +590,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="chloride" class="col-sm-3 col-form-label">Chloride (Cl-)</label>
+                <label for="chloride" class="col-sm-3 col-form-label"
+                  >Chloride (Cl-)</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -540,7 +606,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="ionized_calcium" class="col-sm-3 col-form-label">Ionized Calcium (iCa)</label>
+                <label for="ionized_calcium" class="col-sm-3 col-form-label"
+                  >Ionized Calcium (iCa)</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -554,7 +622,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="nonionized_calcium" class="col-sm-3 col-form-label">Non-ionized Calcium (nCa)</label>
+                <label for="nonionized_calcium" class="col-sm-3 col-form-label"
+                  >Non-ionized Calcium (nCa)</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
@@ -568,7 +638,9 @@ const submit = () => {
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="total_calcium" class="col-sm-3 col-form-label">Total Calcium (TCa)</label>
+                <label for="total_calcium" class="col-sm-3 col-form-label"
+                  >Total Calcium (TCa)</label
+                >
                 <div class="col-sm-9">
                   <input
                     type="text"
