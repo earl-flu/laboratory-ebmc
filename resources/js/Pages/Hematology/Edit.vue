@@ -525,7 +525,7 @@ const submit = () => {
               </div>
               <div class="row mb-3">
                 <label for="eusinophils" class="col-sm-3 col-form-label"
-                  >Eusinophils</label
+                  >Eosinophils</label
                 >
                 <div class="col-sm-9">
                   <input
@@ -652,7 +652,7 @@ const submit = () => {
               <div class="row mb-3">
                 <label for="mcv" class="col-sm-3 col-form-label">MCV</label>
                 <div class="col-sm-9">
-                  <input  
+                  <input
                     type="text"
                     class="form-control"
                     v-model="form.mcv"
