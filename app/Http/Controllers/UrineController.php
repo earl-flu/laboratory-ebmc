@@ -75,7 +75,8 @@ class UrineController extends Controller
             'pt_brand_name' => 'nullable|string',
             'pt_lot_no' => 'nullable|string',
             'pt_expiry_date' => 'nullable|date',
-            'medical_technologist_id' => 'required|exists:medical_technologists,id',
+            'analyst_med_tech_id' => 'required|exists:medical_technologists,id',
+            'verified_by_med_tech_id' => 'nullable|exists:medical_technologists,id',
         ]);
 
         Urine::create($request->all());
@@ -132,7 +133,8 @@ class UrineController extends Controller
             'pt_brand_name' => 'nullable|string',
             'pt_lot_no' => 'nullable|string',
             'pt_expiry_date' => 'nullable|date',
-            'medical_technologist_id' => 'required|exists:medical_technologists,id',
+            'analyst_med_tech_id' => 'required|exists:medical_technologists,id',
+            'verified_by_med_tech_id' => 'nullable|exists:medical_technologists,id',
         ]);
 
         $urine->update($request->all());

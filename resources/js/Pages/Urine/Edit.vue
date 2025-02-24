@@ -34,7 +34,8 @@ const form = useForm({
   pt_brand_name: props.urine.pt_brand_name,
   pt_lot_no: props.urine.pt_lot_no,
   pt_expiry_date: props.urine.pt_expiry_date,
-  medical_technologist_id: props.urine.medical_technologist_id,
+  analyst_med_tech_id: props.urine.analyst_med_tech_id,
+  verified_by_med_tech_id: props.urine.verified_by_med_tech_id,
 });
 
 const submit = () => {
@@ -76,16 +77,14 @@ const submit = () => {
             <h5 class="mb-10">Edit Urine Record</h5>
             <form class="row g-3" @submit.prevent="submit">
               <div class="row mb-3">
-                <label
-                  for="medical_technologist"
-                  class="col-sm-3 col-form-label"
-                  >Medical Technologist</label
+                <label for="analyst_med_tech_id" class="col-sm-3 col-form-label"
+                  >Analyst</label
                 >
                 <div class="col-sm-9">
                   <select
                     class="form-select"
-                    v-model="form.medical_technologist_id"
-                    id="medical_technologist"
+                    v-model="form.analyst_med_tech_id"
+                    id="analyst_med_tech_id"
                     required
                   >
                     <option value="">Select Medical Technologist</option>
@@ -98,7 +97,35 @@ const submit = () => {
                     </option>
                   </select>
                   <div class="invalid-feedback d-block">
-                    {{ form.errors.medical_technologist_id }}
+                    {{ form.errors.analyst_med_tech_id }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label
+                  for="verified_by_med_tech_id"
+                  class="col-sm-3 col-form-label"
+                  >Verified By</label
+                >
+                <div class="col-sm-9">
+                  <select
+                    class="form-select"
+                    v-model="form.verified_by_med_tech_id"
+                    id="verified_by_med_tech_id"
+                    required
+                  >
+                    <option value="">Select Medical Technologist</option>
+                    <option
+                      v-for="technologist in medicalTechnologists"
+                      :key="technologist.id"
+                      :value="technologist.id"
+                    >
+                      {{ technologist.name }}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback d-block">
+                    {{ form.errors.verified_by_med_tech_id }}
                   </div>
                 </div>
               </div>
