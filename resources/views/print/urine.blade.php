@@ -219,20 +219,24 @@
         </table>
 
         <div style="display: flex; gap:20px; margin-top: 50px;">
-            <div style="font-size: 10px; text-align: center; position:relative;">
-                <p style="text-align:left; position:absolute; left:0; top:-35px;">Analyst:</p>
-                <p style="font-weight: bold; text-transform: uppercase; text-decoration: underline;">
-                    {{ $urine->analyst->name }}</p>
-                <p>Medical Technologist</p>
-                <p>License No. {{ $urine->analyst->license_number }}</p>
-            </div>
-            <div style="font-size: 10px; text-align: center; position:relative;">
-                <p style="text-align:left; position:absolute; left:0; top:-35px;">Verified By:</p>
-                <p style="font-weight: bold; text-transform: uppercase; text-decoration: underline;">
-                    {{ $urine->verifiedBy->name }}</p>
-                <p>Medical Technologist</p>
-                <p>License No. {{ $urine->verifiedBy->license_number }}</p>
-            </div>
+            @if ($urine->analyst)
+                <div style="font-size: 10px; text-align: center; position:relative;">
+                    <p style="text-align:left; position:absolute; left:0; top:-35px;">Analyst:</p>
+                    <p style="font-weight: bold; text-transform: uppercase; text-decoration: underline;">
+                        {{ $urine->analyst->name }}</p>
+                    <p>Medical Technologist</p>
+                    <p>License No. {{ $urine->analyst->license_number }}</p>
+                </div>
+            @endif
+            @if ($urine->verifiedBy)
+                <div style="font-size: 10px; text-align: center; position:relative;">
+                    <p style="text-align:left; position:absolute; left:0; top:-35px;">Verified By:</p>
+                    <p style="font-weight: bold; text-transform: uppercase; text-decoration: underline;">
+                        {{ $urine->verifiedBy->name }}</p>
+                    <p>Medical Technologist</p>
+                    <p>License No. {{ $urine->verifiedBy->license_number }}</p>
+                </div>
+            @endif
             <div style="font-size: 10px; text-align: center;">
                 <img style="width: 250px; margin-top: -29px; transform: rotate(-1deg);"
                     src="{{ asset('/images/signature.png') }}" alt="Signature">

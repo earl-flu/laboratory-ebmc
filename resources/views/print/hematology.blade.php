@@ -290,20 +290,24 @@
         </table>
 
         <div style="display: flex; gap:20px; margin-top: 50px;">
-            <div style="font-size: 10px; text-align: center; position:relative;">
-                <p style="text-align:left; position:absolute; left:0; top:-35px;">Analyst:</p>
-                <p style="font-weight: bold; text-transform: uppercase; text-decoration: underline;">
-                    {{ $hematology->analyst->name }}</p>
-                <p>Medical Technologist</p>
-                <p>License No. {{ $hematology->analyst->license_number }}</p>
-            </div>
-            <div style="font-size: 10px; text-align: center; position:relative;">
-                <p style="text-align:left; position:absolute; left:0; top:-35px;">Verified By:</p>
-                <p style="font-weight: bold; text-transform: uppercase; text-decoration: underline;">
-                    {{ $hematology->verifiedBy->name }}</p>
-                <p>Medical Technologist</p>
-                <p>License No. {{ $hematology->verifiedBy->license_number }}</p>
-            </div>
+            @if ($hematology->analyst)
+                <div style="font-size: 10px; text-align: center; position:relative;">
+                    <p style="text-align:left; position:absolute; left:0; top:-35px;">Analyst:</p>
+                    <p style="font-weight: bold; text-transform: uppercase; text-decoration: underline;">
+                        {{ $hematology->analyst->name }}</p>
+                    <p>Medical Technologist</p>
+                    <p>License No. {{ $hematology->analyst->license_number }}</p>
+                </div>
+            @endif
+            @if ($hematology->verifiedBy)
+                <div style="font-size: 10px; text-align: center; position:relative;">
+                    <p style="text-align:left; position:absolute; left:0; top:-35px;">Verified By:</p>
+                    <p style="font-weight: bold; text-transform: uppercase; text-decoration: underline;">
+                        {{ $hematology->verifiedBy->name }}</p>
+                    <p>Medical Technologist</p>
+                    <p>License No. {{ $hematology->verifiedBy->license_number }}</p>
+                </div>
+            @endif
             <div style="font-size: 12px; text-align: center;">
                 <img style="width: 250px; margin-top: -29px; transform: rotate(-1deg);"
                     src="{{ asset('/images/signature.png') }}" alt="Signature">
